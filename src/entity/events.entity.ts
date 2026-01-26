@@ -1,0 +1,57 @@
+import { Expose } from 'class-transformer';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  OneToOne,
+} from 'typeorm';
+import { TicketDetail } from './detail.entity';
+import { Organizer } from './organizer.entity';
+import { Order } from './order.entity';
+
+@Entity('events')
+export class Events {
+  @Expose()
+  @PrimaryGeneratedColumn()
+  id: number;
+  @Expose()
+  @Column()
+  category: string;
+  @Expose()
+  @Column()
+  imgSrc: string;
+  @Expose()
+  @Column({ nullable: true })
+  video: string;
+  @Expose()
+  @Column()
+  city: string;
+  @Expose()
+  @Column('decimal', { precision: 10 })
+  baseprice: number;
+  @Expose()
+  @Column()
+  title: string;
+  @Expose()
+  @Column()
+  locate: string;
+  @Expose()
+  @Column({ type: 'date' })
+  date: Date;
+  @Expose()
+  @Column()
+  timeRange: string;
+  @Expose()
+  @OneToMany(() => TicketDetail, (ticket) => ticket.event)
+  tickets: TicketDetail[];
+  @Expose()
+  @OneToOne(() => Organizer, (organizer) => organizer.event)
+  organizer: Organizer;
+  @Expose()
+  get isPast(): boolean {
+    return new Date(this.date) < new Date();
+  }
+  @OneToMany(() => Order, (order) => order.event)
+  orders: Order[];
+}
