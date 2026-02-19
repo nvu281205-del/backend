@@ -14,7 +14,7 @@ export class Organizer {
   logoUrl: string;
   @Column()
   name: string;
-  @Column()
+  @Column({ type: 'text', nullable: true })
   description: string;
   @OneToOne(() => Events, (event) => event.organizer)
   @JoinColumn()

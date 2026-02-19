@@ -15,9 +15,15 @@ import { ConfigModule } from '@nestjs/config';
 import { Order } from './entity/order.entity';
 import { OrderModule } from './modules/orders/order.module';
 import { OrderTicket } from './entity/ordertickets.entity';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploads'),
+      serveRoot: '/uploads',
+    }),
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
     UsersModule,
     EventModule,

@@ -20,8 +20,12 @@ export class CreateEventDto {
   city: string;
 
   @IsNotEmpty({ message: 'Phải nhập địa điểm tổ chức' })
-  @IsString({ message: 'Địa điểm ban tổ chức phải là chuỗi' })
+  @IsString({ message: 'Địa điểm tổ chức phải là chuỗi' })
   locate: string;
+
+  @IsNotEmpty({ message: 'Phải nhập địa điểm cụ thể' })
+  @IsString({ message: 'Địa điểm cụ thể phải là chuỗi' })
+  locatedetail: string;
 
   @IsNotEmpty({ message: 'Phải nhập tên ban tổ chức' })
   @IsString({ message: 'Tên ban tổ chức phải là chuỗi' })

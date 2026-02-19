@@ -12,7 +12,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       secretOrKey: 'Ashuna',
     });
   }
-  validate(payload: { sub: number; username: string }) {
+  validate(payload: { sub: number; email: string }) {
     const user = payload;
     return user;
   }

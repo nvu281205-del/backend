@@ -13,26 +13,33 @@ import { CreateUserDto } from 'src/dto/createuser-dto';
 import { Users } from 'src/entity/users.entity';
 import { LocalAuthGuard } from 'src/guards/local-guard';
 import { JwtAuthGuard } from 'src/guards/jwt-guard';
-
+import { JwtService } from '@nestjs/jwt';
 @Controller('auth')
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
     private readonly userService: UsersService,
+    private readonly jwtService: JwtService,
   ) {}
   @Post('register')
   async register(@Body() userData: CreateUserDto) {
-    const exitingUser = await this.userService.findByUserName(
-      userData.username,
-    );
+    const exitingUser = await this.userService.findByEmail(userData.email);
     if (exitingUser) {
       throw new BadRequestException(
-        'Email đã tồn tại.Vui lòng nhập email khác',
+        'Email đã tồn tại. Vui lòng nhập email khác',
       );
     }
+
     const user = await this.userService.createUser(userData);
-    return { message: 'Đăng ký thành công', user };
+    const token = this.authService.generateToken(user);
+
+    return {
+      message: 'Đăng ký thành công',
+      user,
+      token,
+    };
   }
+
   @UseGuards(LocalAuthGuard)
   @Post('login')
   login(@Request() req: { user: Users }) {
@@ -40,8 +47,8 @@ export class AuthController {
   }
   @Post('validate')
   validate(@Body() datalogin: CreateUserDto) {
-    const { username, password } = datalogin;
-    return this.userService.validateUser(username, password);
+    const { email, password } = datalogin;
+    return this.userService.validateUser(email, password);
   }
   @UseGuards(JwtAuthGuard)
   @Get('profile')
@@ -57,6 +64,10 @@ export class AuthController {
     if (!user) {
       throw new Error('Invalid refresh token');
     }
-    return this.authService.login(user);
+    const payload = { email: user.email, sub: user.id };
+    return {
+      access_token: this.jwtService.sign(payload),
+      refresh_token: refreshToken,
+    };
   }
 }

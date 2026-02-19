@@ -25,10 +25,10 @@ export class Events {
   @Column({ nullable: true })
   video: string;
   @Expose()
-  @Column()
+  @Column({ nullable: true })
   city: string;
   @Expose()
-  @Column('decimal', { precision: 10 })
+  @Column('decimal', { precision: 10, scale: 0 })
   baseprice: number;
   @Expose()
   @Column()
@@ -36,6 +36,9 @@ export class Events {
   @Expose()
   @Column()
   locate: string;
+  @Expose()
+  @Column({ nullable: true })
+  locatedetail: string;
   @Expose()
   @Column({ type: 'date' })
   date: Date;

@@ -1,21 +1,26 @@
-import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { OrderService } from './order.service';
 
 import { Order } from 'src/entity/order.entity';
 import { CreateOrderDto } from 'src/dto/createorder-dto';
-import { Users } from 'src/entity/users.entity';
 import { JwtAuthGuard } from 'src/guards/jwt-guard';
+import { JwtPayload } from '../auth/jwt-payload.interface';
 
 @Controller('orders')
 export class OrderController {
   constructor(private readonly orderservice: OrderService) {}
+
   @UseGuards(JwtAuthGuard)
   @Post()
   async createOrder(
     @Body() dto: CreateOrderDto,
-    @Req() req: { user: Users },
+    @Req() req: { user: JwtPayload },
   ): Promise<Order> {
-    const userId = req.user.id;
+    const userId = req.user.sub;
     return this.orderservice.createOrder(dto, userId);
+  }
+  @Get()
+  Getall() {
+    return this.orderservice.getAllOrder();
   }
 }

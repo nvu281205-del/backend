@@ -12,8 +12,8 @@ export class AuthService {
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
   ) {}
-  login(user: Users) {
-    const payload = { username: user.username, sub: user.id };
+  generateToken(user:Users){
+     const payload = { email: user.email, sub: user.id };
     const refresh_token = this.jwtService.sign(payload, {
       expiresIn: '7d',
     });
@@ -23,9 +23,21 @@ export class AuthService {
       refresh_token: refresh_token,
     };
   }
+  login(user: Users) {
+    const payload = { email: user.email, sub: user.id };
+    const refresh_token = this.jwtService.sign(payload, {
+      expiresIn: '7d',
+    });
+    this.usersService.updateRefreshToken(user.id, refresh_token);
+    return {
+      access_token: this.jwtService.sign(payload),
+      refresh_token: refresh_token,
+      role:'user',
+    };
+  }
   async verifyRefreshToken(refreshToken: string) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const decode = this.jwtService.decode(refreshToken);
+    const decode = this.jwtService.verify(refreshToken);
     if (decode) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const user = await this.usersService.verifyRefreshToken(decode.sub, refreshToken);

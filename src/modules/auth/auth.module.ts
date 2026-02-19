@@ -14,7 +14,7 @@ import { JwtStrategy } from 'src/passport/jwt.strategy';
     PassportModule,
     JwtModule.register({
       secret: 'Ashuna',
-      signOptions: { expiresIn: '1h' },
+      signOptions: { expiresIn: '1d' },
     }),
   ],
   exports: [AuthService],

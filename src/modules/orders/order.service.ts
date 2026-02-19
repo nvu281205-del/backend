@@ -62,4 +62,22 @@ export class OrderService {
       relations: ['ordertickets', 'ordertickets.ticket'],
     });
   }
+  async getAllOrder() {
+    const orders = await this.repoOrder.find({
+      relations: ['user', 'event', 'ordertickets', 'ordertickets.ticket'],
+    });
+    return orders.map((order) => ({
+      orderId: order.id,
+      username: order.user.username,
+      eventId: order.event.id,
+      tickets: order.ordertickets.map((ot) => ({
+        ticketId: ot.ticket.id,
+        ticketType: ot.ticket.type,
+        price: ot.price,
+        count: ot.count,
+      })),
+      totalPrice: order.totalPrice,
+      paymentMethod: order.payment_method,
+    }));
+  }
 }
