@@ -10,6 +10,7 @@ export class EventsService {
     @InjectRepository(Events)
     private readonly EventRepo: Repository<Events>,
   ) {}
+
   async getAll() {
     const events = await this.EventRepo.find();
     const transformed = plainToInstance(Events, events, {

@@ -36,6 +36,7 @@ export class OrderService {
     for (const t of dto.tickets) {
       const ticket = await this.repoTicket.findOne({
         where: { id: t.ticketId },
+        relations: ['event', 'ordertickets'],
       });
       console.log(ticket);
       if (!ticket) {
@@ -59,7 +60,7 @@ export class OrderService {
     }
     return this.repoOrder.findOne({
       where: { id: order.id },
-      relations: ['ordertickets', 'ordertickets.ticket'],
+      relations: ['event', 'user', 'ordertickets', 'ordertickets.ticket'],
     });
   }
   async getAllOrder() {
@@ -68,6 +69,7 @@ export class OrderService {
     });
     return orders.map((order) => ({
       orderId: order.id,
+      createdAt: order.created_at,
       username: order.user.username,
       eventId: order.event.id,
       tickets: order.ordertickets.map((ot) => ({

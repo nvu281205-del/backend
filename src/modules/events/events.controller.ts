@@ -35,7 +35,6 @@ export class EventController {
   ) {
     return this.eventsSerVice.findbyfilter(category, city, title);
   }
-
   @Get('/:id')
   getOne(@Param('id') id: string) {
     return this.eventsSerVice.getOne(+id);
@@ -48,6 +47,7 @@ export class EventController {
   Insert(@Param('id') id: string, @Body() body: UpdateEventDTO) {
     return this.eventsSerVice.updateEvent(+id, body);
   }
+
   @Delete('/:id')
   Delete(@Param('id') id: string) {
     return this.eventsSerVice.delete(+id);
