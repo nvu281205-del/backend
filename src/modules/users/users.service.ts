@@ -8,6 +8,7 @@ import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { CreateUserDto } from 'src/dto/createuser-dto';
 import { JwtAuthGuard } from 'src/guards/jwt-guard';
+
 @Injectable()
 export class UsersService {
   constructor(
@@ -59,9 +60,23 @@ export class UsersService {
   async getorder(userId) {
     const users = await this.usersRepository.findOne({
       where: { id: userId },
-      relations: ['orders', 'orders.event'],
+      relations: [
+        'orders',
+        'orders.event',
+        'orders.ordertickets',
+        'orders.ordertickets.ticket',
+      ],
     });
-    return users?.orders.map((order) => order.event) ?? [];
+    return (
+      users?.orders.map((order) => ({
+        event: order.event,
+        tickets: order.ordertickets.map((ot) => ({
+          ticketid: ot.ticket.id,
+          ticketType: ot.ticket.type,
+          count: ot.count,
+        })),
+      })) ?? []
+    );
   }
   async updateAvatar(
     userId: number,
