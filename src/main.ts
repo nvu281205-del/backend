@@ -10,10 +10,10 @@ async function bootstrap() {
   app.use(new LoggingMiddleWare().use);
 
   app.enableCors({
-    origin: ['http://localhost:5173',
-      'https://frontend-deploy-sable.vercel.app'
-    ]
-      ,
+    origin: [
+      'http://localhost:5173',
+      'https://frontend-deploy-sable.vercel.app',
+    ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });

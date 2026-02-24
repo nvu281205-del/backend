@@ -39,7 +39,7 @@ import { join } from 'path';
       database: process.env.DB_NAME,
       entities: [Events, TicketDetail, Organizer, Users, Order, OrderTicket],
       synchronize: true,
-      extra: { connectionLimit: 4 },
+      extra: { connectionLimit: 2 },
     }),
     UsersModule,
     AuthModule,
