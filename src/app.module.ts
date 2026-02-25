@@ -17,6 +17,7 @@ import { OrderModule } from './modules/orders/order.module';
 import { OrderTicket } from './entity/ordertickets.entity';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import * as fs from 'fs';
 
 @Module({
   imports: [
@@ -38,7 +39,12 @@ import { join } from 'path';
       password: process.env.DB_PASS,
       database: process.env.DB_NAME,
       entities: [Events, TicketDetail, Organizer, Users, Order, OrderTicket],
-      synchronize: true,
+      ssl: {
+        ca: fs.readFileSync(process.env.DB_CA_PATH).toString(),
+        rejectUnauthorized: true,
+      },
+      synchronize: false,
+      autoLoadEntities: true,
       extra: { connectionLimit: 2 },
     }),
     UsersModule,
