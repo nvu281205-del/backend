@@ -45,7 +45,6 @@ import * as fs from 'fs';
       },
       synchronize: false,
       autoLoadEntities: true,
-      extra: { connectionLimit: 2 },
     }),
     UsersModule,
     AuthModule,
