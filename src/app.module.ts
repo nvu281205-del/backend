@@ -18,7 +18,15 @@ import { OrderTicket } from './entity/ordertickets.entity';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import * as fs from 'fs';
-
+const sslConfig = (() => {
+  if (process.env.DB_CA_PATH && fs.existsSync(process.env.DB_CA_PATH)) {
+    return {
+      rejectUnauthorized: false,
+      ca: fs.readFileSync(process.env.DB_CA_PATH),
+    };
+  }
+  return false;
+})();
 @Module({
   imports: [
     ServeStaticModule.forRoot({
@@ -39,21 +47,7 @@ import * as fs from 'fs';
       password: process.env.DB_PASS,
       database: process.env.DB_NAME,
       entities: [Events, TicketDetail, Organizer, Users, Order, OrderTicket],
-      ssl:
-        process.env.DB_SSL === 'true'
-          ? {
-              rejectUnauthorized: false,
-              ca: process.env.DB_CA_PATH
-                ? fs.readFileSync(process.env.DB_CA_PATH)
-                : undefined,
-              cert: process.env.DB_CERT_PATH
-                ? fs.readFileSync(process.env.DB_CERT_PATH)
-                : undefined,
-              key: process.env.DB_KEY_PATH
-                ? fs.readFileSync(process.env.DB_KEY_PATH)
-                : undefined,
-            }
-          : false,
+      ssl: sslConfig,
       synchronize: true,
       autoLoadEntities: true,
     }),
