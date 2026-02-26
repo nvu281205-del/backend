@@ -16,17 +16,6 @@ import { Events } from '../../entity/events.entity';
 @Controller('events')
 export class EventController {
   constructor(private readonly eventsSerVice: EventsService) {}
-  /*@Get('category')
-  getByCate(@Query('category') category: string) {
-    if (category) {
-      return this.eventsSerVice.findbycategory(category);
-    }
-    return this.eventsSerVice.getAll();
-  }
-  @Get('search')
-  async searchEvents(@Query('title') title: string) {
-    return this.eventsSerVice.searchByTitle(title);
-  }*/
   @Get()
   getEvents(
     @Query('category') category: string,
@@ -34,6 +23,16 @@ export class EventController {
     @Query('city') city: string,
   ) {
     return this.eventsSerVice.findbyfilter(category, city, title);
+  }
+  @Get('special')
+  getSpecialEvents() {
+    return this.eventsSerVice.getSpecialEvents();
+  }
+  @Get('week') async getWeekEvents() {
+    return this.eventsSerVice.getEventsThisWeek();
+  }
+  @Get('month') async getMonthEvents() {
+    return this.eventsSerVice.getEventsThisMonth();
   }
   @Get('/:id')
   getOne(@Param('id') id: string) {

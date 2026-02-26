@@ -55,6 +55,9 @@ export class Events {
   get isPast(): boolean {
     return new Date(this.date) < new Date();
   }
+  @Expose()
+  @Column({ default: false })
+  special: boolean; // sự kiện đặc biệt
   @OneToMany(() => Order, (order) => order.event)
   orders: Order[];
 }

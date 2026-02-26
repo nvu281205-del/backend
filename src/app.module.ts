@@ -39,11 +39,22 @@ import * as fs from 'fs';
       password: process.env.DB_PASS,
       database: process.env.DB_NAME,
       entities: [Events, TicketDetail, Organizer, Users, Order, OrderTicket],
-      ssl: {
-        ca: fs.readFileSync(process.env.DB_CA_PATH).toString(),
-        rejectUnauthorized: true,
-      },
-      synchronize: false,
+      ssl:
+        process.env.DB_SSL === 'true'
+          ? {
+              rejectUnauthorized: false,
+              ca: process.env.DB_CA_PATH
+                ? fs.readFileSync(process.env.DB_CA_PATH)
+                : undefined,
+              cert: process.env.DB_CERT_PATH
+                ? fs.readFileSync(process.env.DB_CERT_PATH)
+                : undefined,
+              key: process.env.DB_KEY_PATH
+                ? fs.readFileSync(process.env.DB_KEY_PATH)
+                : undefined,
+            }
+          : false,
+      synchronize: true,
       autoLoadEntities: true,
     }),
     UsersModule,
