@@ -20,79 +20,81 @@
 </p>
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+  
+# TicketBox 🎟️
 
-## Description
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Node](https://img.shields.io/badge/node-%3E%3D16.0.0-orange)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Description <!-- omit in toc -->
 
-## Project setup
+TicketBox là một hệ thống quản lý sự kiện và bán vé trực tuyến, được xây dựng bằng **NestJS** và **React**.  
+Dự án này cung cấp REST API backend và frontend để người dùng có thể tìm kiếm sự kiện, đặt vé, quản lý đơn hàng, và theo dõi thông tin chi tiết.
 
+Demo: <https://ticketbox-demo.example.com>  
+Frontend repo: <https://github.com/your-org/ticketbox-frontend>
+
+---
+
+## Table of Contents <!-- omit in toc -->
+
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Environment Variables](#environment-variables)
+- [Contributors](#contributors)
+- [Support](#support)
+
+---
+
+## Features
+
+- [x] **Events Management**: tạo, chỉnh sửa, xóa sự kiện.
+- [x] **Ticket Booking**: đặt vé, thanh toán, quản lý đơn hàng.
+- [x] **User Authentication**: đăng ký, đăng nhập, JWT tokens.
+- [x] **Roles & Permissions**: phân quyền Admin/User.
+- [x] **Organizer Module**: quản lý nhà tổ chức sự kiện.
+- [x] **File Uploads**: upload ảnh sự kiện (local/S3).
+- [x] **Internationalization (I18N)**: hỗ trợ đa ngôn ngữ (vi/en).
+- [x] **Swagger API Docs**: tài liệu API tự động.
+- [x] **Database**: MySQL/TiDB Cloud với TypeORM.
+- [x] **Docker Support**: dễ dàng deploy.
+- [x] **CI/CD**: Github Actions.
+
+---
+
+## Tech Stack
+
+- **Backend**: NestJS, TypeORM, MySQL/TiDB Cloud
+- **Frontend**: React, Axios, React Router
+- **Auth**: JWT, Passport
+- **Storage**: Local uploads, Amazon S3
+- **Infra**: Docker, Render/Heroku
+
+---
+
+## Getting Started
+
+### 1. Clone repo
 ```bash
-$ npm install
-```
+git clone https://github.com/your-org/ticketbox.git
+cd ticketbox
+### 2.Istall depedencies
+npm install
+### 3.Setup environment variables
+DB_HOST=
+DB_PORT=
+DB_USER=
+DB_PASS=
+DB_NAME=
 
-## Compile and run the project
+JWT_SECRET=
+ACCESS_TOKEN_EXPIRES=
+REFRESH_TOKEN_EXPIRES=
+### 4.Run Web
+npm run start:dev
 
-```bash
-# development
-$ npm run start
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
