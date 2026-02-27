@@ -71,7 +71,7 @@ DB_PASS=YOUR_DB_PASS
 DB_NAME=YOUR_DB_NAME
 
 # JWT config
-JWT_SECRET=YOUR_JWT_SECRET<br>
+JWT_SECRET=YOUR_JWT_SECRET
 ACCESS_TOKEN_EXPIRES=?   # điền thời gian hết hạn access token, ví dụ 1d
 REFRESH_TOKEN_EXPIRES=?  # điền thời gian hết hạn refresh token, ví dụ 7d
 ```
