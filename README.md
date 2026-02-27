@@ -59,7 +59,8 @@ cd ticketbox-backend
 ### 2.Install dependecies
 npm install
 ### 3.Setup environment variables
-# Database
+Create File .env
+ --Database--
 DB_HOST=YOUR_DB_HOST
 DB_PORT=YOUR_DB_PORT
 DB_USER=YOUR_DB_USER
@@ -67,10 +68,10 @@ DB_PASS=YOUR_DB_PASS
 DB_NAME=YOUR_DB_NAME
 DB_CA_PATH=./certs/isrgrootx1.pem
 
-# JWT config
+--JWT config--
 JWT_SECRET=YOUR_JWT_SECRET
 ACCESS_TOKEN_EXPIRES=?   # điền thời gian hết hạn access token, ví dụ 1d
 REFRESH_TOKEN_EXPIRES=?  # điền thời gian hết hạn refresh token, ví dụ 7d
-### 4.Run Web
+### 4.Run Backend
 npm run start:dev
 
