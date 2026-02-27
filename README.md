@@ -34,7 +34,7 @@ TicketBox Backend cung cấp API cho hệ thống quản lý sự kiện và bá
 - [x] **User Authentication**: đăng ký, đăng nhập, JWT tokens.
 - [x] **Roles & Permissions**: phân quyền Admin/User.
 - [x] **File Uploads**: upload nhiều loại ảnh (sự kiện, nhà tổ chức, logo).
-- [x] **Swagger API Docs** *(nếu bật)*: tài liệu API tự động.
+- [x] **Swagger API Docs**: tài liệu API tự động.
 - [x] **Database**: MySQL/TiDB Cloud với SSL.
 - [x] **CI/CD**: Deploy trên Render.
 
@@ -55,6 +55,7 @@ TicketBox Backend cung cấp API cho hệ thống quản lý sự kiện và bá
 ```bash
 git clone https://github.com/your-org/ticketbox-backend.git
 cd ticketbox-backend
+```
 ### 2.Install dependecies
 npm install
 ### 3.Setup environment variables
