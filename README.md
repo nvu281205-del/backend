@@ -61,19 +61,19 @@ cd backend
 npm install
 ```
 ### 3.Setup environment variables
-Create File .env
+Tạo file .env
 ```bash
  # Database
-DB_HOST=YOUR_DB_HOST<br>
-DB_PORT=YOUR_DB_PORT<br>
-DB_USER=YOUR_DB_USER<br>
-DB_PASS=YOUR_DB_PASS<br>
-DB_NAME=YOUR_DB_NAME<br>
+DB_HOST=YOUR_DB_HOST
+DB_PORT=YOUR_DB_PORT
+DB_USER=YOUR_DB_USER
+DB_PASS=YOUR_DB_PASS
+DB_NAME=YOUR_DB_NAME
 
 # JWT config
 JWT_SECRET=YOUR_JWT_SECRET<br>
-ACCESS_TOKEN_EXPIRES=?   # điền thời gian hết hạn access token, ví dụ 1d<br>
-REFRESH_TOKEN_EXPIRES=?  # điền thời gian hết hạn refresh token, ví dụ 7d<br>
+ACCESS_TOKEN_EXPIRES=?   # điền thời gian hết hạn access token, ví dụ 1d
+REFRESH_TOKEN_EXPIRES=?  # điền thời gian hết hạn refresh token, ví dụ 7d
 ```
 ### 4.Run Backend
 ```bash
