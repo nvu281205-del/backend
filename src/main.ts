@@ -1,6 +1,6 @@
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import { LoggingMiddleWare } from './middleware/logging.middleware';
 
 async function bootstrap() {
@@ -9,6 +9,7 @@ async function bootstrap() {
   // eslint-disable-next-line @typescript-eslint/unbound-method
   app.use(new LoggingMiddleWare().use);
 
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
   app.enableCors({
     origin: [
       'http://localhost:5173',

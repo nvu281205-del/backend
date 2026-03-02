@@ -45,11 +45,13 @@ export class EventsService {
     return instanceToPlain(transformed);
   }
   async getOne(id: number): Promise<Events | null> {
-    return this.EventRepo.findOne({
+    const event = await this.EventRepo.findOne({
       where: { id },
       relations: ['tickets', 'organizer'],
     });
+    return plainToInstance(Events, event);
   }
+
   async getSpecialEvents() {
     return this.EventRepo.find({
       where: { special: true },
