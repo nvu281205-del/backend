@@ -56,11 +56,20 @@ TicketBox Backend cung cấp API cho hệ thống quản lý sự kiện và bá
 git clone https://github.com/nvu281205-del/backend.git
 cd backend
 ```
-### 2.Install dependecies
+### 2.Seeding data với Mysql
+--Di chuyển đến thư mục cài đặt Mysql client--
+```bash
+cd "C:\Program Files\MySQL\MySQL Server 9.5\bin"
+```
+--Chạy lệnh import--
+```bash
+mysql.exe -h <host> -P <port> -u <user> -p <database> < path\to\nestdb_full.sql
+```
+### 3.Install dependecies
 ```bash
 npm install
 ```
-### 3.Setup environment variables
+### 4.Setup environment variables
 Tạo file .env
 ```bash
  # Database
@@ -75,7 +84,7 @@ JWT_SECRET=YOUR_JWT_SECRET
 ACCESS_TOKEN_EXPIRES=?   # điền thời gian hết hạn access token, ví dụ 1d
 REFRESH_TOKEN_EXPIRES=?  # điền thời gian hết hạn refresh token, ví dụ 7d
 ```
-### 4.Run Backend
+### 5.Run Backend
 ```bash
 npm run start:dev
 ```
