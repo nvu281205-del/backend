@@ -60,7 +60,7 @@ VD: cd "C:\Program Files\MySQL\MySQL Server 9.5\bin"
 ```
 --Chạy lệnh import--
 ```basdh
-mysql.exe -h <host> -P <port> -u <user> -p <database> < path\to\backend\\nestdb_full.sql  # điền thông tin db và đường dẫn tới file sql của bạn 
+mysql.exe -h <host> -P <port> -u <user> -p <database> < path\to\backend\nestdb_full.sql  # điền thông tin db và đường dẫn tới file sql của bạn 
 ```
 ### 3.Install dependecies
 ```bash
