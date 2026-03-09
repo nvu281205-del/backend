@@ -34,10 +34,7 @@ TicketBox Backend cung cấp API cho hệ thống quản lý sự kiện và bá
 - [x] **User Authentication**: đăng ký, đăng nhập, JWT tokens.
 - [x] **Roles & Permissions**: phân quyền Admin/User.
 - [x] **File Uploads**: upload nhiều loại ảnh (sự kiện, nhà tổ chức, logo).
-- [x] **Swagger API Docs**: tài liệu API tự động.
 - [x] **Database**: MySQL/TiDB Cloud với SSL.
-- [x] **CI/CD**: Deploy trên Render.
-
 ---
 
 ## Tech Stack
@@ -59,11 +56,11 @@ cd backend
 ### 2.Seeding data với Mysql
 --Di chuyển đến thư mục cài đặt Mysql client--
 ```bash
-cd "C:\Program Files\MySQL\MySQL Server 9.5\bin"
+VD: cd "C:\Program Files\MySQL\MySQL Server 9.5\bin"
 ```
 --Chạy lệnh import--
-```bash
-mysql.exe -h <host> -P <port> -u <user> -p <database> < path\to\nestdb_full.sql
+```basdh
+mysql.exe -h <host> -P <port> -u <user> -p <database> < path\to\backend\\nestdb_full.sql  # điền thông tin db và đường dẫn tới file sql của bạn 
 ```
 ### 3.Install dependecies
 ```bash
